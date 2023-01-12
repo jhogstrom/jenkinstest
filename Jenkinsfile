@@ -2,15 +2,16 @@ pipeline {
     agent {
         docker { image 'node:16.13.1-alpine' }
     }
-    stages {
-        stage('Example Build') {
+     stages {
+        stage('Build') {
             steps {
-                echo 'Hello, Maven'
+                echo 'Currently building the project'
+                sh 'node --version'
             }
         }
-        stage('Example Test') {
+        stage('Test') {
             steps {
-                echo 'Hello, JDK'
+                echo 'Currently testing the project'
             }
         }
     }
