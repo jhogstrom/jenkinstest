@@ -1,18 +1,27 @@
 pipeline {
-    agent {
-        docker { image 'node:16.13.1-alpine' }
-    }
+    agent none
      stages {
-        stage('Build') {
-            steps {
-                echo 'Currently building the project'
-                sh 'node --version'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Currently testing the project'
-            }
+            stage('Running in parallel'){
+                parallel {
+                    stage('Build .Net') {
+                        agent {
+                            docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
+                        }
+                        steps {
+                            echo 'Currently building the project on windows'
+                            sh 'csc --version'
+                        }
+                    }
+                    stage('Build Node') {
+                        agent {
+                            docker { image 'node:16.13.1-alpine' }
+                        }
+                        steps {
+                            echo 'Currently building the project on linux'
+                            sh 'node --version'
+                        }
+                    }
+                }
         }
     }
 }
