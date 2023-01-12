@@ -11,7 +11,7 @@ pipeline {
                         steps {
                             echo 'Currently building the projectfor .net'
                             sh 'dotnet --version'
-                            runtests()
+                            runtests(environment: ".net")
 
                         }
                     }
@@ -22,7 +22,7 @@ pipeline {
                         steps {
                             echo 'Currently building the project for node'
                             sh 'node --version'
-                            runtests()
+                            runtests(environment: "node")
                         }
                     }
                 }
