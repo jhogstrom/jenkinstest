@@ -8,8 +8,8 @@ pipeline {
                             docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
                         }
                         steps {
-                            echo 'Currently building the project on windows'
-                            sh 'csc --version'
+                            echo 'Currently building the projectfor .net'
+                            sh 'dotnet --version'
                         }
                     }
                     stage('Build Node') {
@@ -17,7 +17,7 @@ pipeline {
                             docker { image 'node:16.13.1-alpine' }
                         }
                         steps {
-                            echo 'Currently building the project on linux'
+                            echo 'Currently building the project for node'
                             sh 'node --version'
                         }
                     }
