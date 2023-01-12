@@ -1,3 +1,4 @@
+@Library("VizLib") _
 pipeline {
     agent none
      stages {
@@ -10,6 +11,8 @@ pipeline {
                         steps {
                             echo 'Currently building the projectfor .net'
                             sh 'dotnet --version'
+                            runtests()
+
                         }
                     }
                     stage('Build Node') {
@@ -19,6 +22,7 @@ pipeline {
                         steps {
                             echo 'Currently building the project for node'
                             sh 'node --version'
+                            runtests()
                         }
                     }
                 }
